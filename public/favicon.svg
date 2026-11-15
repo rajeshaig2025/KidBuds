@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Royal Shield Outer Gold Border -->
+  <path d="M60 8L104 24V58C104 86.5 85.2 106.8 60 114C34.8 106.8 16 86.5 16 58V24L60 8Z" fill="#FFFFFF" stroke="#C59B27" stroke-width="6"/>
+  <!-- Inner Royal Sapphire Shield -->
+  <path d="M60 15L97 28.5V57.5C97 82 81 99.5 60 106C39 99.5 23 82 23 57.5V28.5L60 15Z" fill="#1E3A8A"/>
+  <!-- Gold Open Book & Rising Sun Rays -->
+  <circle cx="60" cy="45" r="10" fill="#FDE68A"/>
+  <path d="M38 66C45 62 53 63 60 67C67 63 75 62 82 66V82C75 78 67 79 60 83C53 79 45 78 38 82V66Z" fill="#FFFFFF" stroke="#C59B27" stroke-width="2.5"/>
+  <path d="M60 67V83" stroke="#C59B27" stroke-width="2.5"/>
+  <!-- Top Star -->
+  <polygon points="60,22 62.5,27.5 68.5,28 64,32 65.5,38 60,34.8 54.5,38 56,32 51.5,28 57.5,27.5" fill="#F59E0B"/>
+</svg>
