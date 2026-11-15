@@ -49,47 +49,37 @@ export const defaultHeroSlides = [
   {
     id: 'hero-1',
     badge: 'HPBSE Dharamshala Affiliated • Nursery to 12th',
-    title: 'Nurturing Future Leaders in the Serene Hills of Hamirpur',
-    subtitle: 'State-of-the-art smart digital classrooms, advanced STEM laboratories & all-round personality development.',
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=85',
-    ctaPrimary: 'Apply for Admission 2026–27',
-    ctaSecondary: 'Academic Wings'
+    title: 'Kid Buds Public Senior Secondary School, Bijhari',
+    subtitle: 'State-of-the-art classrooms, advanced laboratories & all-round personality development.',
+    image: '/school_image_home.png'
   },
   {
     id: 'hero-2',
-    badge: 'Senior Secondary Excellence • Medical, Non-Med, Commerce & Arts',
-    title: 'Advanced Laboratories & Integrated Competitive Mentorship',
-    subtitle: 'Hands-on practicals in Physics, Chemistry, Biology & High-Speed AI Computer Labs with senior PGT faculty.',
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1920&q=85',
-    ctaPrimary: 'Explore 11th & 12th Streams',
-    ctaSecondary: 'View Faculty'
+    badge: 'Senior Secondary Campus • Hamirpur',
+    title: 'Premier Senior Secondary School in Bijhari',
+    subtitle: 'Comprehensive education from Foundational Years to Senior Secondary Board Excellence.',
+    image: '/school_image_home2.png'
   },
   {
     id: 'hero-3',
-    badge: 'Foundational Wing • Activity & Play-Way Learning',
-    title: 'A Joyful & Caring Early Childhood Start (Nursery to UKG)',
-    subtitle: 'Child-friendly spaces sparking early curiosity, English phonics, creativity and emotional confidence.',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=85',
-    ctaPrimary: 'Book a Campus Visit',
-    ctaSecondary: 'Photo Gallery'
+    badge: 'Senior Secondary Excellence • Medical, Non-Med, Commerce & Arts',
+    title: 'Advanced Laboratories & Integrated Competitive Mentorship',
+    subtitle: 'Hands-on practicals in Physics, Chemistry, Biology & High-Speed AI Computer Labs with senior PGT faculty.',
+    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1920&q=85'
   },
   {
     id: 'hero-4',
-    badge: 'Sports & Co-Curricular Excellence',
-    title: 'Building Champions: Athletics, Yoga & Team Spirit',
-    subtitle: 'Expansive sports grounds, annual athletic meets, and physical fitness guided by certified sports trainers.',
-    image: 'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1920&q=85',
-    ctaPrimary: 'Explore Campus',
-    ctaSecondary: 'Our Facilities'
+    badge: 'Foundational Wing • Activity & Play-Way Learning',
+    title: 'A Joyful & Caring Early Childhood Start (Nursery to UKG)',
+    subtitle: 'Child-friendly spaces sparking early curiosity, English phonics, creativity and emotional confidence.',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1920&q=85'
   },
   {
     id: 'hero-5',
-    badge: '100% Board Result Record',
-    title: 'Celebrating Academic Merit in HPBSE Dharamshala Board Exams',
-    subtitle: 'Consistently producing top district and state rank holders with dedicated individual doubt-clearing sessions.',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=85',
-    ctaPrimary: 'View Board Toppers',
-    ctaSecondary: 'Admission Process'
+    badge: 'Sports & Co-Curricular Excellence',
+    title: 'Building Champions: Athletics, Yoga & Team Spirit',
+    subtitle: 'Expansive sports grounds, annual athletic meets, and physical fitness guided by certified sports trainers.',
+    image: 'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1920&q=85'
   }
 ];
 
