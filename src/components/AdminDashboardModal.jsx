@@ -22,7 +22,12 @@ import {
   MessageSquare,
   RotateCcw,
   Save,
-  Lock
+  Lock,
+  Key,
+  Eye,
+  EyeOff,
+  AlertTriangle,
+  HelpCircle
 } from 'lucide-react';
 import SchoolCrestLogo from './SchoolCrestLogo';
 import { optimizeImage } from '../utils/imageOptimizer';
@@ -63,6 +68,19 @@ export default function AdminDashboardModal({
 
   // Draft Settings State for instant editing
   const [draftSettings, setDraftSettings] = useState(settings);
+
+  // Security PIN Change State
+  const [pinChangeForm, setPinChangeForm] = useState({
+    currentPin: '',
+    newPin: '',
+    confirmPin: ''
+  });
+  const [pinChangeMsg, setPinChangeMsg] = useState({ type: '', text: '' });
+  const [showPinState, setShowPinState] = useState({
+    current: false,
+    new: false,
+    confirm: false
+  });
 
   // New Item Forms
   const [newSlide, setNewSlide] = useState({
@@ -135,8 +153,46 @@ export default function AdminDashboardModal({
       setDraftSettings(settings);
       setPinError('');
     } else {
-      setPinError('Invalid Admin PIN. Default PIN is: kidbuds2026');
+      setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
     }
+  };
+
+  const handleChangePin = async (e) => {
+    e.preventDefault();
+    setPinChangeMsg({ type: '', text: '' });
+
+    const activeCurrentPin = (settings.adminPin || 'kidbuds2026').trim();
+    if (pinChangeForm.currentPin.trim() !== activeCurrentPin) {
+      setPinChangeMsg({ type: 'error', text: 'Current Admin PIN is incorrect. Please enter your existing PIN.' });
+      return;
+    }
+
+    if (!pinChangeForm.newPin || pinChangeForm.newPin.trim().length < 6) {
+      setPinChangeMsg({ type: 'error', text: 'New PIN must be at least 6 characters (letters or numbers).' });
+      return;
+    }
+
+    if (pinChangeForm.newPin.trim() !== pinChangeForm.confirmPin.trim()) {
+      setPinChangeMsg({ type: 'error', text: 'New PIN and Confirm PIN do not match. Please verify.' });
+      return;
+    }
+
+    const updatedSettings = {
+      ...settings,
+      adminPin: pinChangeForm.newPin.trim()
+    };
+
+    setSettings(updatedSettings);
+    setDraftSettings(updatedSettings);
+    localStorage.setItem('kb_school_settings', JSON.stringify(updatedSettings));
+    await saveSchoolConfigToCloud(updatedSettings);
+
+    setPinChangeForm({ currentPin: '', newPin: '', confirmPin: '' });
+    setPinChangeMsg({
+      type: 'success',
+      text: 'Admin PIN successfully updated and synchronized to Google Cloud Firestore!'
+    });
+    showToast('Admin Security PIN changed and synced to Google Cloud!');
   };
 
   // Universal Image Upload Handler (Optimizes to WebP + attempts Firebase Storage or uses instant dataUrl)
@@ -477,7 +533,7 @@ export default function AdminDashboardModal({
               <input
                 type="password"
                 className="kb-input"
-                placeholder="Enter Admin PIN (Default: kidbuds2026)"
+                placeholder="Enter Admin Security PIN"
                 value={pinInput}
                 onChange={(e) => setPinInput(e.target.value)}
                 style={{ textAlign: 'center', fontSize: '1.15rem', fontWeight: 800, padding: '14px' }}
@@ -495,11 +551,12 @@ export default function AdminDashboardModal({
                   padding: '12px',
                   borderRadius: '12px',
                   background: 'var(--bg-ivory)',
-                  fontSize: '0.84rem',
-                  color: 'var(--text-body)'
+                  fontSize: '0.82rem',
+                  color: 'var(--text-muted)',
+                  lineHeight: 1.5
                 }}
               >
-                Default Admin PIN: <strong>kidbuds2026</strong> (Editable in Settings)
+                🔒 Protected by Google Cloud Firestore. Default PIN: <strong>kidbuds2026</strong> (Editable in Admin &gt; Security).
               </div>
             </form>
           </div>
@@ -514,6 +571,7 @@ export default function AdminDashboardModal({
             </div>
             {[
               { id: 'settings', label: 'School Identity & Contact Info', icon: Settings },
+              { id: 'security', label: 'Admin Security & Change PIN', icon: Key },
               { id: 'hero', label: `Hero Image Carousel (${heroSlides.length})`, icon: ImageIcon },
               { id: 'notices', label: `Notices & Circulars (${notices.length})`, icon: Bell },
               { id: 'enquiries', label: `Admission Leads (${enquiries.length})`, icon: Inbox },
@@ -825,6 +883,219 @@ export default function AdminDashboardModal({
                     </button>
                   </div>
                 </form>
+              )}
+
+              {/* TAB: ADMIN SECURITY & PIN MANAGEMENT */}
+              {activeTab === 'security' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.35rem', color: 'var(--royal-blue)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Lock size={22} color="var(--brand-orange)" />
+                      Admin Security & Access PIN
+                    </h3>
+                    <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
+                      Manage your administrative login credentials, update your password/PIN anytime, and view the Cloud recovery plan.
+                    </p>
+                  </div>
+
+                  {/* Form Card: Change PIN */}
+                  <div
+                    style={{
+                      background: '#ffffff',
+                      border: '1.5px solid var(--border-light)',
+                      borderRadius: '16px',
+                      padding: '28px',
+                      boxShadow: '0 4px 16px rgba(13, 39, 87, 0.05)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+                      <div
+                        style={{
+                          width: 42,
+                          height: 42,
+                          borderRadius: '10px',
+                          background: 'var(--royal-blue-light)',
+                          color: 'var(--royal-blue)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <Key size={22} />
+                      </div>
+                      <div>
+                        <h4 style={{ fontSize: '1.1rem', margin: 0 }}>Change Administrator PIN / Password</h4>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                          Changes take effect immediately across all devices via Google Cloud Firestore.
+                        </div>
+                      </div>
+                    </div>
+
+                    {pinChangeMsg.text && (
+                      <div
+                        style={{
+                          marginBottom: '20px',
+                          padding: '12px 16px',
+                          borderRadius: '10px',
+                          fontSize: '0.9rem',
+                          fontWeight: 700,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          background: pinChangeMsg.type === 'error' ? '#fef2f2' : '#ecfdf5',
+                          border: `1px solid ${pinChangeMsg.type === 'error' ? '#f87171' : '#34d399'}`,
+                          color: pinChangeMsg.type === 'error' ? '#b91c1c' : '#065f46'
+                        }}
+                      >
+                        {pinChangeMsg.type === 'error' ? <AlertTriangle size={18} /> : <CheckCircle2 size={18} />}
+                        <span>{pinChangeMsg.text}</span>
+                      </div>
+                    )}
+
+                    <form onSubmit={handleChangePin} style={{ display: 'flex', flexDirection: 'column', gap: '18px', maxWidth: 520 }}>
+                      <div>
+                        <label className="kb-label">Current Admin PIN *</label>
+                        <div style={{ position: 'relative' }}>
+                          <input
+                            type={showPinState.current ? 'text' : 'password'}
+                            className="kb-input"
+                            placeholder="Enter your current PIN"
+                            value={pinChangeForm.currentPin}
+                            onChange={(e) => setPinChangeForm({ ...pinChangeForm, currentPin: e.target.value })}
+                            required
+                            style={{ paddingRight: '42px' }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPinState({ ...showPinState, current: !showPinState.current })}
+                            style={{
+                              position: 'absolute',
+                              right: 12,
+                              top: '50%',
+                              transform: 'translateY(-50%)',
+                              background: 'transparent',
+                              color: '#64748b'
+                            }}
+                            title={showPinState.current ? 'Hide PIN' : 'Show PIN'}
+                          >
+                            {showPinState.current ? <EyeOff size={18} /> : <Eye size={18} />}
+                          </button>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                        <div>
+                          <label className="kb-label">New Admin PIN * (Min 6 chars)</label>
+                          <div style={{ position: 'relative' }}>
+                            <input
+                              type={showPinState.new ? 'text' : 'password'}
+                              className="kb-input"
+                              placeholder="New Secure PIN"
+                              value={pinChangeForm.newPin}
+                              onChange={(e) => setPinChangeForm({ ...pinChangeForm, newPin: e.target.value })}
+                              required
+                              minLength={6}
+                              style={{ paddingRight: '42px' }}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowPinState({ ...showPinState, new: !showPinState.new })}
+                              style={{
+                                position: 'absolute',
+                                right: 12,
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                background: 'transparent',
+                                color: '#64748b'
+                              }}
+                              title={showPinState.new ? 'Hide PIN' : 'Show PIN'}
+                            >
+                              {showPinState.new ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="kb-label">Confirm New PIN *</label>
+                          <div style={{ position: 'relative' }}>
+                            <input
+                              type={showPinState.confirm ? 'text' : 'password'}
+                              className="kb-input"
+                              placeholder="Re-type New PIN"
+                              value={pinChangeForm.confirmPin}
+                              onChange={(e) => setPinChangeForm({ ...pinChangeForm, confirmPin: e.target.value })}
+                              required
+                              minLength={6}
+                              style={{ paddingRight: '42px' }}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowPinState({ ...showPinState, confirm: !showPinState.confirm })}
+                              style={{
+                                position: 'absolute',
+                                right: 12,
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                background: 'transparent',
+                                color: '#64748b'
+                              }}
+                              title={showPinState.confirm ? 'Hide PIN' : 'Show PIN'}
+                            >
+                              {showPinState.confirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '6px' }}>
+                        <button type="submit" className="btn-royal-primary" style={{ background: 'var(--brand-orange)', padding: '12px 24px' }}>
+                          <ShieldCheck size={18} /> Update PIN & Save to Cloud
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  {/* Security & Recovery Plan Card */}
+                  <div
+                    style={{
+                      background: 'var(--bg-gold-tint)',
+                      border: '1.5px solid var(--border-gold)',
+                      borderRadius: '16px',
+                      padding: '24px'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                      <HelpCircle size={22} color="var(--royal-blue)" />
+                      <h4 style={{ fontSize: '1.05rem', margin: 0, color: 'var(--royal-blue)' }}>
+                        Security Plan & Password Recovery (पासवर्ड भूल जाने पर रिकवरी योजना)
+                      </h4>
+                    </div>
+
+                    <p style={{ fontSize: '0.88rem', color: 'var(--text-heading)', lineHeight: 1.6, marginBottom: '16px' }}>
+                      यदि आप या स्कूल प्रबंधन कभी भी नया Admin Password / PIN भूल जाते हैं, तो आपको वेबसाइट में किसी तकनीकी समस्या का सामना नहीं करना पड़ेगा:
+                    </p>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+                      <div style={{ background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
+                        <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--royal-blue)', marginBottom: '6px' }}>
+                          1. Firebase Console से 1-क्लिक रीसेट (100% Guaranteed)
+                        </div>
+                        <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                          आपका PIN सीधे <strong>Google Firebase Firestore</strong> में स्टोर होता है। आप <code>console.firebase.google.com</code> में जाकर <strong>kidbud-3203e &gt; Firestore Database &gt; kb_school_config &gt; main_settings &gt; adminPin</strong> में जाकर बिना किसी कोड बदलाव के अपना पिन कभी भी देख या बदल सकते हैं।
+                        </div>
+                      </div>
+
+                      <div style={{ background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
+                        <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--brand-orange)', marginBottom: '6px' }}>
+                          2. Zero Data Loss Security
+                        </div>
+                        <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                          PIN बदलने या भूल जाने पर स्कूल का कोई भी डेटा (सर्कुलर्स, फैकल्टी, टॉपर्स, एडमिशन लीड्स) कभी डिलीट नहीं होता। सारा डेटा Google Cloud में सुरक्षित रूप से संरक्षित रहता है।
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
 
               {/* TAB 2: HERO BANNERS */}
