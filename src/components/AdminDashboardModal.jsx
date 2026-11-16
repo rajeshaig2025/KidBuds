@@ -2,7 +2,7 @@
 // Kid Buds Public Senior Secondary School, Bijhari (Hamirpur, H.P.)
 // Phase 1 Dynamic Admin Panel + Future-Ready Portal Foundation
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   ShieldCheck,
@@ -33,6 +33,7 @@ import SchoolCrestLogo from './SchoolCrestLogo';
 import { optimizeImage } from '../utils/imageOptimizer';
 import {
   COLLECTIONS,
+  fetchSchoolConfigFromCloud,
   saveSchoolConfigToCloud,
   syncCollectionToCloud,
   deleteDocFromCloud,
@@ -138,6 +139,27 @@ export default function AdminDashboardModal({
     }
   });
 
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  // Sync latest settings directly from Google Cloud Firestore whenever modal opens
+  useEffect(() => {
+    if (isOpen) {
+      async function syncLatest() {
+        try {
+          const freshCloudConfig = await fetchSchoolConfigFromCloud();
+          if (freshCloudConfig) {
+            setSettings(freshCloudConfig);
+            setDraftSettings(freshCloudConfig);
+            localStorage.setItem('kb_school_settings', JSON.stringify(freshCloudConfig));
+          }
+        } catch (err) {
+          console.warn('Sync latest on modal open skipped:', err);
+        }
+      }
+      syncLatest();
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const showToast = (msg) => {
@@ -145,15 +167,41 @@ export default function AdminDashboardModal({
     setTimeout(() => setStatusBanner(''), 4000);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const expectedPin = (settings.adminPin || 'kidbuds2026').trim();
-    if (pinInput.trim() === expectedPin) {
-      setIsAuthenticated(true);
-      setDraftSettings(settings);
-      setPinError('');
-    } else {
-      setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
+    setPinError('');
+    setIsLoggingIn(true);
+
+    try {
+      // 1. Fetch live real-time configuration directly from Google Cloud Firestore
+      const freshCloudConfig = await fetchSchoolConfigFromCloud();
+      const currentConfig = freshCloudConfig || settings;
+      const expectedPin = (currentConfig.adminPin || 'kidbuds2026').trim();
+
+      if (pinInput.trim() === expectedPin) {
+        setIsAuthenticated(true);
+        if (freshCloudConfig) {
+          setSettings(freshCloudConfig);
+          setDraftSettings(freshCloudConfig);
+          localStorage.setItem('kb_school_settings', JSON.stringify(freshCloudConfig));
+        } else {
+          setDraftSettings(settings);
+        }
+        setPinError('');
+      } else {
+        setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
+      }
+    } catch (err) {
+      // Offline fallback
+      const fallbackPin = (settings.adminPin || 'kidbuds2026').trim();
+      if (pinInput.trim() === fallbackPin) {
+        setIsAuthenticated(true);
+        setDraftSettings(settings);
+      } else {
+        setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
+      }
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
@@ -542,8 +590,14 @@ export default function AdminDashboardModal({
               {pinError && (
                 <div style={{ color: '#dc2626', fontSize: '0.86rem', fontWeight: 700 }}>{pinError}</div>
               )}
-              <button type="submit" className="btn-royal-primary" style={{ width: '100%', padding: '14px', fontSize: '1rem', background: 'var(--brand-orange)' }}>
-                <ShieldCheck size={20} /> Unlock Full Admin Dashboard
+              <button
+                type="submit"
+                disabled={isLoggingIn}
+                className="btn-royal-primary"
+                style={{ width: '100%', padding: '14px', fontSize: '1rem', background: 'var(--brand-orange)', opacity: isLoggingIn ? 0.8 : 1 }}
+              >
+                <ShieldCheck size={20} />
+                <span>{isLoggingIn ? 'Verifying with Google Cloud...' : 'Unlock Full Admin Dashboard'}</span>
               </button>
               <div
                 style={{
@@ -556,7 +610,7 @@ export default function AdminDashboardModal({
                   lineHeight: 1.5
                 }}
               >
-                🔒 Protected by Google Cloud Firestore. Default PIN: <strong>kidbuds2026</strong> (Editable in Admin &gt; Security).
+                🔒 Protected by Google Cloud Firestore. Enter your latest Admin Security PIN.
               </div>
             </form>
           </div>
