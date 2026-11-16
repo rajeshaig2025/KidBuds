@@ -10,7 +10,8 @@ import {
   setDoc,
   getDoc,
   getDocs,
-  deleteDoc
+  deleteDoc,
+  getDocFromServer
 } from 'firebase/firestore';
 import {
   getStorage,
@@ -39,6 +40,15 @@ export const COLLECTIONS = {
   FEES: 'kb_fee_records'          // Phase 3: Fee Ledger
 };
 
+export const OFFICIAL_FIREBASE_CONFIG = {
+  apiKey: (import.meta.env && import.meta.env.VITE_FIREBASE_API_KEY) || 'AIzaSyALySFmrZ9sbNEMrrWdQF_El2jNJ2PbgXI',
+  authDomain: (import.meta.env && import.meta.env.VITE_FIREBASE_AUTH_DOMAIN) || 'kidbud-3203e.firebaseapp.com',
+  projectId: (import.meta.env && import.meta.env.VITE_FIREBASE_PROJECT_ID) || 'kidbud-3203e',
+  storageBucket: (import.meta.env && import.meta.env.VITE_FIREBASE_STORAGE_BUCKET) || 'kidbud-3203e.firebasestorage.app',
+  messagingSenderId: (import.meta.env && import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID) || '76765436538',
+  appId: (import.meta.env && import.meta.env.VITE_FIREBASE_APP_ID) || '1:76765436538:web:cc4d982ae07979465239c3'
+};
+
 export function isFirebaseConfigValid(config) {
   if (!config) return false;
   return Boolean(
@@ -50,26 +60,7 @@ export function isFirebaseConfigValid(config) {
 
 export function getEffectiveFirebaseConfig(customConfig) {
   if (isFirebaseConfigValid(customConfig)) return customConfig;
-
-  const savedRaw = localStorage.getItem('kb_firebase_config');
-  if (savedRaw) {
-    try {
-      const parsed = JSON.parse(savedRaw);
-      if (isFirebaseConfigValid(parsed)) return parsed;
-    } catch {}
-  }
-
-  const envConfig = {
-    apiKey: (import.meta.env && import.meta.env.VITE_FIREBASE_API_KEY) || 'AIzaSyALySFmrZ9sbNEMrrWdQF_El2jNJ2PbgXI',
-    authDomain: (import.meta.env && import.meta.env.VITE_FIREBASE_AUTH_DOMAIN) || 'kidbud-3203e.firebaseapp.com',
-    projectId: (import.meta.env && import.meta.env.VITE_FIREBASE_PROJECT_ID) || 'kidbud-3203e',
-    storageBucket: (import.meta.env && import.meta.env.VITE_FIREBASE_STORAGE_BUCKET) || 'kidbud-3203e.firebasestorage.app',
-    messagingSenderId: (import.meta.env && import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID) || '76765436538',
-    appId: (import.meta.env && import.meta.env.VITE_FIREBASE_APP_ID) || '1:76765436538:web:cc4d982ae07979465239c3'
-  };
-
-  if (isFirebaseConfigValid(envConfig)) return envConfig;
-  return null;
+  return OFFICIAL_FIREBASE_CONFIG;
 }
 
 export function initFirebase(customConfig) {
@@ -190,9 +181,15 @@ export async function fetchSchoolConfigFromCloud() {
     if (!db) initFirebase();
     if (!db) return null;
     const refDoc = doc(db, COLLECTIONS.CONFIG, 'main_settings');
-    const snap = await getDoc(refDoc);
-    return snap.exists() ? snap.data() : null;
-  } catch {
+    let snap;
+    try {
+      snap = await getDocFromServer(refDoc);
+    } catch {
+      snap = await getDoc(refDoc);
+    }
+    return (snap && snap.exists()) ? snap.data() : null;
+  } catch (err) {
+    console.error('Fetch school config failed:', err);
     return null;
   }
 }

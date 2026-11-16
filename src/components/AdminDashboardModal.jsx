@@ -175,10 +175,19 @@ export default function AdminDashboardModal({
     try {
       // 1. Fetch live real-time configuration directly from Google Cloud Firestore
       const freshCloudConfig = await fetchSchoolConfigFromCloud();
-      const currentConfig = freshCloudConfig || settings;
-      const expectedPin = (currentConfig.adminPin || 'kidbuds2026').trim();
+      
+      let livePin = '';
+      if (freshCloudConfig && freshCloudConfig.adminPin) {
+        livePin = String(freshCloudConfig.adminPin).trim();
+      } else if (settings && settings.adminPin) {
+        livePin = String(settings.adminPin).trim();
+      } else {
+        livePin = 'kidbuds2026';
+      }
 
-      if (pinInput.trim() === expectedPin) {
+      const enteredPin = pinInput.trim();
+
+      if (enteredPin === livePin) {
         setIsAuthenticated(true);
         if (freshCloudConfig) {
           setSettings(freshCloudConfig);
@@ -189,17 +198,15 @@ export default function AdminDashboardModal({
         }
         setPinError('');
       } else {
-        setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
+        if (enteredPin === 'kidbuds2026' && livePin !== 'kidbuds2026') {
+          setPinError('पुराना डिफ़ॉल्ट PIN (kidbuds2026) अमान्य हो चुका है। कृपया डेटाबेस में सेट किया गया नया PIN दर्ज करें।');
+        } else {
+          setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
+        }
       }
     } catch (err) {
-      // Offline fallback
-      const fallbackPin = (settings.adminPin || 'kidbuds2026').trim();
-      if (pinInput.trim() === fallbackPin) {
-        setIsAuthenticated(true);
-        setDraftSettings(settings);
-      } else {
-        setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
-      }
+      console.error('Login verification error:', err);
+      setPinError('Verification error: ' + err.message);
     } finally {
       setIsLoggingIn(false);
     }
