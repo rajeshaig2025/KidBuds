@@ -146,25 +146,46 @@ export default function App() {
     async function loadCloudData() {
       try {
         const cloudConfig = await fetchSchoolConfigFromCloud();
-        if (cloudConfig) setSettings(cloudConfig);
+        if (cloudConfig && cloudConfig.schoolName) {
+          setSettings((prev) => ({ ...prev, ...cloudConfig }));
+          localStorage.setItem('kb_school_settings', JSON.stringify(cloudConfig));
+        }
 
         const cloudHero = await fetchCollectionFromCloud(COLLECTIONS.HERO);
-        if (cloudHero) setHeroSlides(cloudHero);
+        if (cloudHero && cloudHero.length > 0) {
+          setHeroSlides(cloudHero);
+          localStorage.setItem('kb_hero_slides', JSON.stringify(cloudHero));
+        }
 
         const cloudNotices = await fetchCollectionFromCloud(COLLECTIONS.NOTICES);
-        if (cloudNotices) setNotices(cloudNotices);
+        if (cloudNotices && cloudNotices.length > 0) {
+          setNotices(cloudNotices);
+          localStorage.setItem('kb_notices', JSON.stringify(cloudNotices));
+        }
 
         const cloudStaff = await fetchCollectionFromCloud(COLLECTIONS.STAFF);
-        if (cloudStaff) setStaff(cloudStaff);
+        if (cloudStaff && cloudStaff.length > 0) {
+          setStaff(cloudStaff);
+          localStorage.setItem('kb_faculty', JSON.stringify(cloudStaff));
+        }
 
         const cloudToppers = await fetchCollectionFromCloud(COLLECTIONS.TOPPERS);
-        if (cloudToppers) setToppers(cloudToppers);
+        if (cloudToppers && cloudToppers.length > 0) {
+          setToppers(cloudToppers);
+          localStorage.setItem('kb_toppers', JSON.stringify(cloudToppers));
+        }
 
         const cloudGallery = await fetchCollectionFromCloud(COLLECTIONS.GALLERY);
-        if (cloudGallery) setGallery(cloudGallery);
+        if (cloudGallery && cloudGallery.length > 0) {
+          setGallery(cloudGallery);
+          localStorage.setItem('kb_gallery', JSON.stringify(cloudGallery));
+        }
 
         const cloudEnquiries = await fetchCollectionFromCloud(COLLECTIONS.ENQUIRIES);
-        if (cloudEnquiries) setEnquiries(cloudEnquiries);
+        if (cloudEnquiries && cloudEnquiries.length > 0) {
+          setEnquiries(cloudEnquiries);
+          localStorage.setItem('kb_enquiries', JSON.stringify(cloudEnquiries));
+        }
       } catch (err) {
         console.warn('Initial cloud fetch skipped (using local storage):', err);
       }
