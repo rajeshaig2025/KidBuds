@@ -250,6 +250,7 @@ button {
 }
 
 /* 2026 Sleek Nav Pill Links */
+.kb-desktop-nav,
 .kb-simple-nav {
   display: flex;
   align-items: center;
@@ -276,6 +277,70 @@ button {
   background: #ffffff;
   color: #f25c05;
   box-shadow: 0 2px 8px rgba(13, 39, 87, 0.08);
+}
+
+/* Always-Open Horizontal Sub-Navigation Bar (Mobile & Tablet - Never Collapses!) */
+.kb-subnav-bar {
+  display: none;
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid rgba(13, 39, 87, 0.07);
+  border-bottom: 1px solid rgba(13, 39, 87, 0.09);
+  padding: 8px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.kb-subnav-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.kb-subnav-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.kb-subnav-pill {
+  padding: 6px 13px;
+  font-size: 0.81rem;
+  font-weight: 700;
+  color: #0e2b5c;
+  background: #f8fafc;
+  border: 1px solid rgba(13, 39, 87, 0.12);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 1px 3px rgba(13, 39, 87, 0.04);
+}
+
+.kb-subnav-pill:active,
+.kb-subnav-pill:hover {
+  background: var(--royal-blue);
+  color: #ffffff;
+  border-color: var(--royal-blue);
+}
+
+.kb-subnav-btn {
+  cursor: pointer;
+  border: 1px solid rgba(13, 39, 87, 0.12);
+  background: #ffffff;
+}
+
+.kb-subnav-pill-highlight {
+  background: var(--brand-orange) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-orange) !important;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(242, 92, 5, 0.3);
 }
 
 .kb-header-phone-box {
@@ -1415,11 +1480,15 @@ button {
 
 /* Tablets & Small Laptops (max-width: 1080px) */
 @media (max-width: 1080px) {
+  .kb-desktop-nav,
   .kb-simple-nav {
-    display: none; /* Switch to Hamburger menu */
+    display: none !important; /* Hide inline top-bar nav */
+  }
+  .kb-subnav-bar {
+    display: block !important; /* Show always-open horizontal subnav bar */
   }
   .kb-mobile-menu-btn {
-    display: flex;
+    display: none !important; /* Never show collapsible hamburger */
   }
   .kb-phone-text {
     display: none; /* Only show phone icon */
@@ -1485,8 +1554,11 @@ button {
   .kb-logo-line-3 {
     font-size: 0.58rem;
   }
-  .kb-admission-capsule {
-    display: none; /* Hide bulky capsule in top bar to give hamburger & phone plenty of room */
+  .kb-subnav-bar {
+    display: block !important;
+  }
+  .kb-mobile-menu-btn {
+    display: none !important;
   }
 }
 
@@ -1503,7 +1575,7 @@ button {
   }
   .kb-brand {
     gap: 8px;
-    max-width: calc(100% - 95px);
+    max-width: calc(100% - 150px);
   }
   .kb-logo-line-1 {
     font-size: 1.12rem;
@@ -1515,6 +1587,25 @@ button {
   }
   .kb-logo-line-3 {
     display: none; /* Hide 3rd line on small mobile */
+  }
+  .kb-admission-capsule {
+    padding: 2px 8px 2px 3px;
+    gap: 4px;
+  }
+  .kb-capsule-bell-wrap {
+    width: 24px;
+    height: 24px;
+  }
+  .kb-capsule-text {
+    font-size: 0.74rem;
+  }
+  .kb-subnav-bar {
+    display: block !important;
+    padding: 6px 0;
+  }
+  .kb-subnav-pill {
+    padding: 5px 12px;
+    font-size: 0.78rem;
   }
   .kb-hero-carousel-wrap {
     height: 45vh;
@@ -1561,5 +1652,12 @@ button {
   }
   .school-custom-logo-wrap {
     height: 38px !important;
+  }
+  .kb-admission-capsule .kb-capsule-text {
+    display: none; /* Only show swinging bell on ultra-small screens */
+  }
+  .kb-admission-capsule {
+    padding: 4px;
+    border-radius: 50%;
   }
 }
