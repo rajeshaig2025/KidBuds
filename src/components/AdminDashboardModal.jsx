@@ -199,7 +199,7 @@ export default function AdminDashboardModal({
         setPinError('');
       } else {
         if (enteredPin === 'kidbuds2026' && livePin !== 'kidbuds2026') {
-          setPinError('पुराना डिफ़ॉल्ट PIN (kidbuds2026) अमान्य हो चुका है। कृपया डेटाबेस में सेट किया गया नया PIN दर्ज करें।');
+          setPinError('The default PIN (kidbuds2026) has expired. Please enter the updated Admin Security PIN.');
         } else {
           setPinError('Invalid Admin PIN. Please enter the correct Security PIN.');
         }
@@ -1128,21 +1128,21 @@ export default function AdminDashboardModal({
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
                       <HelpCircle size={22} color="var(--royal-blue)" />
                       <h4 style={{ fontSize: '1.05rem', margin: 0, color: 'var(--royal-blue)' }}>
-                        Security Plan & Password Recovery (पासवर्ड भूल जाने पर रिकवरी योजना)
+                        Security Plan & Emergency Password Recovery
                       </h4>
                     </div>
 
                     <p style={{ fontSize: '0.88rem', color: 'var(--text-heading)', lineHeight: 1.6, marginBottom: '16px' }}>
-                      यदि आप या स्कूल प्रबंधन कभी भी नया Admin Password / PIN भूल जाते हैं, तो आपको वेबसाइट में किसी तकनीकी समस्या का सामना नहीं करना पड़ेगा:
+                      If the school administration or webmaster ever forgets the updated Admin Password/PIN, you can easily recover or reset it anytime:
                     </p>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
                       <div style={{ background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
                         <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--royal-blue)', marginBottom: '6px' }}>
-                          1. Firebase Console से 1-क्लिक रीसेट (100% Guaranteed)
+                          1. Direct Reset via Firebase Console (100% Guaranteed)
                         </div>
                         <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                          आपका PIN सीधे <strong>Google Firebase Firestore</strong> में स्टोर होता है। आप <code>console.firebase.google.com</code> में जाकर <strong>kidbud-3203e &gt; Firestore Database &gt; kb_school_config &gt; main_settings &gt; adminPin</strong> में जाकर बिना किसी कोड बदलाव के अपना पिन कभी भी देख या बदल सकते हैं।
+                          Your PIN is securely stored in <strong>Google Firebase Firestore</strong>. You can view or reset it anytime by opening <code>console.firebase.google.com</code> &gt; <strong>kidbud-3203e &gt; Firestore Database &gt; kb_school_config &gt; main_settings &gt; adminPin</strong> without needing any code modifications.
                         </div>
                       </div>
 
@@ -1151,7 +1151,7 @@ export default function AdminDashboardModal({
                           2. Zero Data Loss Security
                         </div>
                         <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                          PIN बदलने या भूल जाने पर स्कूल का कोई भी डेटा (सर्कुलर्स, फैकल्टी, टॉपर्स, एडमिशन लीड्स) कभी डिलीट नहीं होता। सारा डेटा Google Cloud में सुरक्षित रूप से संरक्षित रहता है।
+                          Changing or recovering the PIN never impacts any school circulars, toppers, faculty records, or admission enquiries. All school records remain permanently protected in Google Cloud.
                         </div>
                       </div>
                     </div>
