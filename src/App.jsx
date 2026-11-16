@@ -266,7 +266,7 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* 1. SINGLE CLEAN HEADER (Top Ribbon Removed - Clean & Grounded) */}
+      {/* 1. SINGLE CLEAN RESPONSIVE HEADER */}
       <header className="kb-header">
         <div className="kb-container kb-header-inner">
           {/* Left: School Logo & Identity */}
@@ -279,7 +279,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Center: 6 2026 Sleek Nav Pill Links */}
+          {/* Center: 6 2026 Sleek Nav Pill Links (Desktop) */}
           <nav className="kb-simple-nav">
             <a href="#about" className="kb-simple-nav-link">About Us</a>
             <a href="#classes" className="kb-simple-nav-link">Classes & Streams</a>
@@ -289,11 +289,11 @@ export default function App() {
             <a href="#gallery" className="kb-simple-nav-link">Gallery</a>
           </nav>
 
-          {/* Right: Direct Phone Call + Modern Stylish Admission Notification Pill + Mobile Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          {/* Right: Phone Call + Admission Notification Pill + Mobile Hamburger */}
+          <div className="kb-header-right-actions">
             <a href={`tel:${settings.phonePrimary}`} className="kb-header-phone-box" title="Call School Office">
               <Phone size={14} color="var(--brand-orange)" />
-              <span>{settings.phonePrimary}</span>
+              <span className="kb-phone-text">{settings.phonePrimary}</span>
             </a>
 
             {/* Modern Animated Bell Capsule */}
@@ -311,47 +311,103 @@ export default function App() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
+        {/* Mobile Backdrop to click-out */}
+        {mobileMenuOpen && (
+          <div
+            className="kb-mobile-backdrop"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+
         {/* Clean Mobile Slide-down Drawer */}
         {mobileMenuOpen && (
           <div className="kb-mobile-drawer">
-            <a href="#about" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-              <span>About Us</span>
-              <ChevronRight size={16} />
-            </a>
-            <a href="#classes" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-              <span>Classes & Streams (Nursery–12th)</span>
-              <ChevronRight size={16} />
-            </a>
-            <a href="#faculty" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-              <span>Faculty & Mentors</span>
-              <ChevronRight size={16} />
-            </a>
-            <a href="#toppers" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-              <span>HPBSE Board Toppers</span>
-              <ChevronRight size={16} />
-            </a>
-            <a href="#notices" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-              <span>Circulars & Updates</span>
-              <ChevronRight size={16} />
-            </a>
-            <a href="#gallery" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-              <span>Campus Photo Gallery</span>
-              <ChevronRight size={16} />
-            </a>
-            <a
-              href="#admission"
-              className="kb-mobile-drawer-link"
-              style={{ background: 'var(--brand-orange)', color: '#fff', border: 'none' }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span>Apply for Admission 2026–27</span>
-              <Sparkles size={16} />
-            </a>
+            <div className="kb-mobile-drawer-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="kb-drawer-badge">HPBSE Dharamshala</span>
+                <span style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 600 }}>Nursery to 12th</span>
+              </div>
+              <button
+                className="kb-drawer-close-btn"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close Navigation Menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="kb-mobile-drawer-links">
+              <a href="#about" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
+                <span>About Us</span>
+                <ChevronRight size={16} />
+              </a>
+              <a href="#classes" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
+                <span>Classes & Streams (Nursery–12th)</span>
+                <ChevronRight size={16} />
+              </a>
+              <a href="#faculty" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
+                <span>Faculty & Mentors</span>
+                <ChevronRight size={16} />
+              </a>
+              <a href="#toppers" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
+                <span>HPBSE Board Toppers</span>
+                <ChevronRight size={16} />
+              </a>
+              <a href="#notices" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
+                <span>Circulars & Updates</span>
+                <ChevronRight size={16} />
+              </a>
+              <a href="#gallery" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
+                <span>Campus Photo Gallery</span>
+                <ChevronRight size={16} />
+              </a>
+              <button
+                className="kb-mobile-drawer-link kb-drawer-btn"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsDisclosureOpen(true);
+                }}
+              >
+                <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <FileText size={16} color="var(--royal-blue)" />
+                  <span>Mandatory Public Disclosure</span>
+                </span>
+                <ChevronRight size={16} />
+              </button>
+            </div>
+
+            <div className="kb-mobile-drawer-actions">
+              <a
+                href="#admission"
+                className="kb-mobile-cta-btn"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Sparkles size={18} />
+                <span>Apply for Admission 2026–27</span>
+              </a>
+              <a
+                href={`tel:${settings.phonePrimary}`}
+                className="kb-mobile-call-btn"
+              >
+                <Phone size={15} color="var(--brand-orange)" />
+                <span>Call School: {settings.phonePrimary}</span>
+              </a>
+              <button
+                className="kb-mobile-admin-btn"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsAdminOpen(true);
+                }}
+              >
+                <Lock size={13} />
+                <span>Staff & Admin Control Center</span>
+              </button>
+            </div>
           </div>
         )}
       </header>

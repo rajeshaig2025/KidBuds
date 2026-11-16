@@ -8,16 +8,17 @@ export default function SchoolCrestLogo({ logoUrl, schoolName, size = 88, classN
     <div
       className={`school-custom-logo-wrap ${className}`}
       style={{
-        height: size,
+        '--logo-size': `${size}px`,
+        height: 'var(--logo-size, 88px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
         background: '#ffffff',
-        padding: '5px 8px',
-        borderRadius: '16px',
+        padding: '4px 6px',
+        borderRadius: '14px',
         border: '2px solid rgba(242, 92, 5, 0.45)', // Vivid Brand Orange & Gold Border
-        boxShadow: '0 6px 20px -3px rgba(13, 39, 87, 0.12), 0 0 0 3px rgba(13, 39, 87, 0.04)',
+        boxShadow: '0 4px 16px -2px rgba(13, 39, 87, 0.12)',
         transition: 'all 0.3s ease'
       }}
     >
@@ -28,7 +29,7 @@ export default function SchoolCrestLogo({ logoUrl, schoolName, size = 88, classN
           height: '100%',
           width: 'auto',
           objectFit: 'contain',
-          borderRadius: '10px'
+          borderRadius: '8px'
         }}
       />
     </div>

@@ -182,12 +182,11 @@ button {
   position: sticky;
   top: 0;
   z-index: 90;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(13, 39, 87, 0.08);
   box-shadow: 0 4px 20px -2px rgba(13, 39, 87, 0.04);
-  white-space: nowrap;
   transition: all 0.3s ease;
 }
 
@@ -197,7 +196,14 @@ button {
   justify-content: space-between;
   padding: 10px 0;
   gap: 16px;
-  flex-wrap: nowrap;
+  position: relative;
+}
+
+.kb-header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .kb-brand {
@@ -1208,6 +1214,7 @@ button {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .kb-mobile-menu-btn:hover {
@@ -1215,23 +1222,89 @@ button {
   border-color: var(--royal-blue);
 }
 
+/* Mobile Backdrop */
+.kb-mobile-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 39, 87, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 95;
+  animation: fadeIn 0.2s ease-out;
+}
+
 /* Mobile Slide-down Drawer */
 .kb-mobile-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   background: #ffffff;
   border-bottom: 2px solid var(--border-light);
-  box-shadow: 0 16px 30px rgba(13, 39, 87, 0.12);
-  padding: 16px 24px 24px;
+  box-shadow: 0 20px 40px rgba(13, 39, 87, 0.18);
+  padding: 16px 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  animation: dropIn 0.22s ease-out;
+  gap: 14px;
+  max-height: calc(90vh - 60px);
+  overflow-y: auto;
+  white-space: normal;
+  z-index: 100;
+  animation: dropIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kb-mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.kb-drawer-badge {
+  background: rgba(13, 39, 87, 0.08);
+  color: var(--royal-blue);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kb-drawer-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kb-drawer-close-btn:hover {
+  background: #e2e8f0;
+  color: #0e2b5c;
+}
+
+.kb-mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .kb-mobile-drawer-link {
-  padding: 12px 16px;
+  padding: 11px 14px;
   border-radius: 10px;
-  font-size: 0.96rem;
-  font-weight: 800;
+  font-size: 0.92rem;
+  font-weight: 700;
   color: #0e2b5c;
   background: #f8fafc;
   text-decoration: none;
@@ -1239,11 +1312,83 @@ button {
   align-items: center;
   justify-content: space-between;
   border: 1px solid var(--border-light);
+  transition: all 0.2s ease;
+  white-space: normal;
+  text-align: left;
+  width: 100%;
 }
 
-.kb-mobile-drawer-link:hover {
+.kb-mobile-drawer-link:hover,
+.kb-mobile-drawer-link:active {
   background: var(--royal-blue-light);
   color: var(--brand-orange);
+  border-color: rgba(242, 92, 5, 0.3);
+}
+
+.kb-drawer-btn {
+  cursor: pointer;
+}
+
+.kb-mobile-drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-light);
+}
+
+.kb-mobile-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--brand-orange);
+  color: #ffffff !important;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(242, 92, 5, 0.3);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.kb-mobile-cta-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(242, 92, 5, 0.4);
+}
+
+.kb-mobile-call-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f8fafc;
+  color: #0e2b5c;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  text-decoration: none;
+}
+
+.kb-mobile-admin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.kb-mobile-admin-btn:hover {
+  color: #0e2b5c;
 }
 
 /* Notice Board Grid Responsive Container */
@@ -1276,12 +1421,26 @@ button {
   .kb-mobile-menu-btn {
     display: flex;
   }
-  .kb-header-phone-box span {
-    display: none; /* Only show phone icon to save space */
+  .kb-phone-text {
+    display: none; /* Only show phone icon */
   }
   .kb-header-phone-box {
-    padding: 8px;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
+  }
+  .school-custom-logo-wrap {
+    height: 56px !important;
+  }
+  .kb-logo-line-1 {
+    font-size: 1.4rem;
+  }
+  .kb-logo-line-2 {
+    font-size: 0.72rem;
   }
   .kb-notices-grid-wrap,
   .kb-footer-grid-wrap,
@@ -1301,64 +1460,106 @@ button {
   }
 }
 
-/* Mobile Screens (max-width: 640px) */
-@media (max-width: 640px) {
+/* Medium Tablets & Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
   .kb-header-inner {
     padding: 8px 0;
+    gap: 12px;
+  }
+  .school-custom-logo-wrap {
+    height: 48px !important;
+    padding: 3px 5px !important;
+  }
+  .kb-brand {
     gap: 10px;
+    min-width: 0;
+    flex-shrink: 1;
   }
   .kb-logo-line-1 {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
+    line-height: 1.1;
   }
   .kb-logo-line-2 {
     font-size: 0.68rem;
-    letter-spacing: 0.04em;
   }
   .kb-logo-line-3 {
-    font-size: 0.6rem;
-  }
-  .kb-hero-carousel-wrap {
-    height: 48vh;
-    min-height: 280px;
-    max-height: 380px;
-  }
-  .kb-hero-carousel-nav-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 0.85rem;
-  }
-  .kb-hero-carousel-nav-btn.prev {
-    left: 10px;
-  }
-  .kb-hero-carousel-nav-btn.next {
-    right: 10px;
+    font-size: 0.58rem;
   }
   .kb-admission-capsule {
-    padding: 3px 10px 3px 4px;
-    gap: 6px;
+    display: none; /* Hide bulky capsule in top bar to give hamburger & phone plenty of room */
   }
-  .kb-capsule-bell-wrap {
-    width: 26px;
-    height: 26px;
+}
+
+/* Mobile Screens (max-width: 640px) */
+@media (max-width: 640px) {
+  .kb-header-inner {
+    padding: 6px 0;
+    gap: 8px;
   }
-  .kb-capsule-text {
-    font-size: 0.78rem;
+  .school-custom-logo-wrap {
+    height: 42px !important;
+    padding: 2px 4px !important;
+    border-radius: 10px !important;
+  }
+  .kb-brand {
+    gap: 8px;
+    max-width: calc(100% - 95px);
+  }
+  .kb-logo-line-1 {
+    font-size: 1.12rem;
+    line-height: 1.05;
+  }
+  .kb-logo-line-2 {
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+  }
+  .kb-logo-line-3 {
+    display: none; /* Hide 3rd line on small mobile */
+  }
+  .kb-hero-carousel-wrap {
+    height: 45vh;
+    min-height: 260px;
+    max-height: 360px;
+  }
+  .kb-hero-carousel-nav-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+  }
+  .kb-hero-carousel-nav-btn.prev {
+    left: 8px;
+  }
+  .kb-hero-carousel-nav-btn.next {
+    right: 8px;
   }
   .kb-grid-3 {
     grid-template-columns: 1fr;
     gap: 16px;
   }
   .kb-section {
-    padding: 42px 0;
+    padding: 36px 0;
   }
   .kb-section-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
   .kb-admin-header {
     padding: 0 16px;
     height: 60px;
   }
   .kb-admin-content-pane {
-    padding: 20px 16px;
+    padding: 16px 12px;
+  }
+}
+
+/* Extra Small Phones (max-width: 380px) */
+@media (max-width: 380px) {
+  .kb-logo-line-1 {
+    font-size: 1rem;
+  }
+  .kb-logo-line-2 {
+    font-size: 0.58rem;
+  }
+  .school-custom-logo-wrap {
+    height: 38px !important;
   }
 }
