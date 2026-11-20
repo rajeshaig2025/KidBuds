@@ -140,6 +140,7 @@ export default function AdminDashboardModal({
   });
 
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isSyncingAll, setIsSyncingAll] = useState(false);
 
   // Sync latest settings directly from Google Cloud Firestore whenever modal opens
   useEffect(() => {
@@ -459,8 +460,6 @@ export default function AdminDashboardModal({
     await deleteDocFromCloud(COLLECTIONS.ENQUIRIES, id);
     showToast('Enquiry deleted.');
   };
-
-  const [isSyncingAll, setIsSyncingAll] = useState(false);
 
   const handleSyncAllToCloud = async () => {
     setIsSyncingAll(true);

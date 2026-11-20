@@ -1251,6 +1251,15 @@ export default function App() {
                     Mandatory Public Disclosure
                   </button>
                 </li>
+                <li>
+                  <button
+                    onClick={() => setIsAdminOpen(true)}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontWeight: 700, color: 'var(--brand-orange-dark)', display: 'flex', alignItems: 'center', gap: '6px' }}
+                    className="kb-ribbon-link"
+                  >
+                    <Lock size={13} /> Staff & Admin Login
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -1264,13 +1273,13 @@ export default function App() {
                 <div>📞 Phone: <a href={`tel:${settings.phonePrimary}`} style={{ fontWeight: 800, color: 'var(--royal-blue)' }}>{settings.phonePrimary}</a></div>
                 <div>✉️ Email: <a href={`mailto:${settings.email}`} style={{ color: 'var(--text-muted)' }}>{settings.email}</a></div>
                 <div>🕒 Hours: {settings.officeTimings}</div>
-                <div style={{ marginTop: '10px' }}>
+                <div style={{ marginTop: '12px' }}>
                   <button
                     onClick={() => setIsAdminOpen(true)}
-                    className="btn-royal-outline"
-                    style={{ padding: '7px 16px', fontSize: '0.82rem', borderColor: 'var(--border-light)' }}
+                    className="btn-royal-primary"
+                    style={{ padding: '8px 18px', fontSize: '0.84rem' }}
                   >
-                    <Lock size={13} /> Staff / Admin Login
+                    <Lock size={14} /> Staff / Admin Login
                   </button>
                 </div>
               </div>
