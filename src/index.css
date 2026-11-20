@@ -2,31 +2,36 @@
   --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Official Brand Colors from Logo */
-  --royal-blue: #0e2b5c;
-  /* Deep KB Navy Blue */
-  --royal-blue-bright: #1d4ed8;
-  --royal-blue-light: #eff6ff;
-  --brand-orange: #ea580c;
-  /* KB Bright Leaf Orange / Amber */
-  --brand-orange-light: #fff7ed;
-  --brand-orange-border: rgba(234, 88, 12, 0.35);
+  /* Official Brand Colors: Refined White, Spring Parrot Green & Deep Forest Slate */
+  --royal-blue: #093824;          /* Deep Regal Forest Slate (Prestige Headings & Weight) */
+  --royal-blue-bright: #16a34a;   /* Rich Emerald Green */
+  --royal-blue-light: #f0fdf4;    /* Whispering Mint Frost */
+  --brand-orange: #22c55e;        /* Vibrant Contrast Spring Parrot Green */
+  --brand-orange-dark: #16a34a;   /* Rich Parrot Green */
+  --brand-orange-light: #f0fdf4;  /* Ultra Light Mint Mist */
+  --brand-orange-border: rgba(34, 197, 94, 0.32);
+
+  --royal-gold: #22c55e;
+  --royal-gold-dark: #15803d;
+  --border-gold: rgba(34, 197, 94, 0.24);
+  --bg-gold-tint: #f0fdf4;
+  --shadow-gold: 0 8px 24px -4px rgba(34, 197, 94, 0.28);
 
   --bg-white: #ffffff;
-  --bg-ivory: #fafbfc;
-  --bg-pearl: #f1f5f9;
+  --bg-ivory: #fafdfb;            /* Clean, Crisp Airy White */
+  --bg-pearl: #f4faf6;            /* Subtle Botanical Pearl */
 
-  --text-heading: #0e2b5c;
-  --text-body: #334155;
+  --text-heading: #093824;        /* High-contrast Deep Forest Slate */
+  --text-body: #334155;           /* Clean Slate */
   --text-muted: #64748b;
 
-  --border-light: #e2e8f0;
-  --border-brand: rgba(14, 43, 92, 0.15);
+  --border-light: #e5e9ea;
+  --border-brand: rgba(34, 197, 94, 0.22);
 
-  --shadow-xs: 0 2px 8px rgba(14, 43, 92, 0.04);
-  --shadow-sm: 0 6px 20px -4px rgba(14, 43, 92, 0.06);
-  --shadow-md: 0 14px 34px -8px rgba(14, 43, 92, 0.10);
-  --shadow-lg: 0 24px 50px -12px rgba(14, 43, 92, 0.16);
+  --shadow-xs: 0 2px 8px rgba(9, 56, 36, 0.04);
+  --shadow-sm: 0 6px 20px -4px rgba(9, 56, 36, 0.06);
+  --shadow-md: 0 14px 34px -8px rgba(9, 56, 36, 0.09);
+  --shadow-lg: 0 24px 50px -12px rgba(9, 56, 36, 0.13);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -92,9 +97,9 @@ button {
   padding: 0 24px;
 }
 
-/* Top Announcement Ribbon (Light Gold & Ivory Royal Ribbon) */
+/* Top Announcement Ribbon (Fresh Spring Mint & Ivory Ribbon) */
 .kb-top-ribbon {
-  background: linear-gradient(90deg, #fdf8ec 0%, #f5f9ff 50%, #fdf8ec 100%);
+  background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 100%);
   border-bottom: 1px solid var(--border-gold);
   font-size: 0.83rem;
   color: var(--text-heading);
@@ -129,7 +134,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   padding: 4px 14px;
   border-radius: 999px;
   border: 1px solid var(--border-light);
@@ -137,7 +142,7 @@ button {
 }
 
 .kb-ticker-badge {
-  background: var(--royal-gold);
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark));
   color: #ffffff;
   font-size: 0.7rem;
   font-weight: 800;
@@ -185,8 +190,8 @@ button {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(13, 39, 87, 0.08);
-  box-shadow: 0 4px 20px -2px rgba(13, 39, 87, 0.04);
+  border-bottom: 1px solid rgba(9, 56, 36, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(9, 56, 36, 0.04);
   transition: all 0.3s ease;
 }
 
@@ -228,7 +233,7 @@ button {
 .kb-logo-line-1 {
   font-size: 1.65rem;
   font-weight: 900;
-  color: #0d2757;
+  color: #093824;
   letter-spacing: 0.02em;
   line-height: 1;
 }
@@ -236,7 +241,7 @@ button {
 .kb-logo-line-2 {
   font-size: 0.8rem;
   font-weight: 900;
-  color: #f25c05;
+  color: #16a34a;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-top: 2px;
@@ -256,10 +261,10 @@ button {
   align-items: center;
   gap: 2px;
   flex-shrink: 1;
-  background: rgba(248, 250, 252, 0.85);
+  background: rgba(240, 253, 244, 0.65);
   padding: 4px;
   border-radius: 999px;
-  border: 1px solid rgba(13, 39, 87, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.16);
 }
 
 .kb-simple-nav-link {
@@ -275,8 +280,8 @@ button {
 
 .kb-simple-nav-link:hover {
   background: #ffffff;
-  color: #f25c05;
-  box-shadow: 0 2px 8px rgba(13, 39, 87, 0.08);
+  color: #16a34a;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.12);
 }
 
 .kb-header-phone-box {
@@ -285,12 +290,12 @@ button {
   gap: 6px;
   font-size: 0.84rem;
   font-weight: 800;
-  color: #0e2b5c;
+  color: #093824;
   text-decoration: none;
   padding: 7px 12px;
   border-radius: 999px;
-  background: rgba(248, 250, 252, 0.9);
-  border: 1px solid rgba(13, 39, 87, 0.1);
+  background: rgba(240, 253, 244, 0.7);
+  border: 1px solid rgba(34, 197, 94, 0.22);
   white-space: nowrap;
   flex-shrink: 0;
   transition: all 0.2s ease;
@@ -298,7 +303,7 @@ button {
 
 .kb-header-phone-box:hover {
   border-color: var(--brand-orange);
-  color: var(--brand-orange);
+  color: var(--brand-orange-dark);
   background: #ffffff;
 }
 
@@ -307,21 +312,21 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #f3efe6; /* Soft natural warm beige/greige */
-  border: 1.5px solid rgba(13, 39, 87, 0.12);
+  background: #f0fdf4; /* Pure Fresh Botanical Tint */
+  border: 1.5px solid rgba(34, 197, 94, 0.35);
   padding: 4px 16px 4px 6px;
   border-radius: 999px;
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(13, 39, 87, 0.06);
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.1);
   flex-shrink: 0;
 }
 
 .kb-admission-capsule:hover {
   transform: translateY(-2px);
-  background: #eae3d5;
-  box-shadow: 0 6px 18px rgba(13, 39, 87, 0.12);
-  border-color: rgba(242, 92, 5, 0.35);
+  background: #dcfce7;
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.2);
+  border-color: var(--brand-orange);
 }
 
 .kb-capsule-bell-wrap {
@@ -333,8 +338,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0d2757;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: #16a34a;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
   flex-shrink: 0;
 }
 
@@ -390,7 +395,7 @@ button {
   min-height: 520px;
   max-height: 720px;
   overflow: hidden;
-  background: #0e2b5c;
+  background: #093824;
 }
 
 .kb-hero-track {
@@ -420,9 +425,9 @@ button {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-      rgba(14, 43, 92, 0.3) 0%,
+      rgba(9, 56, 36, 0.3) 0%,
       rgba(0, 0, 0, 0) 40%,
-      rgba(14, 43, 92, 0.72) 100%);
+      rgba(9, 56, 36, 0.75) 100%);
   display: flex;
   align-items: flex-end;
   padding: 0 0 54px;
@@ -437,7 +442,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--brand-orange);
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark));
   color: #ffffff;
   padding: 6px 16px;
   border-radius: 999px;
@@ -446,7 +451,7 @@ button {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 12px;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
 }
 
 .kb-hero-main-title {
@@ -545,8 +550,8 @@ button {
 
 .kb-nav-btn:hover,
 .kb-nav-btn.active {
-  background: var(--bg-blue-tint);
-  color: var(--royal-blue-bright);
+  background: var(--bg-gold-tint);
+  color: var(--brand-orange-dark);
 }
 
 .kb-header-cta {
@@ -561,19 +566,19 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-blue-bright) 100%);
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-orange-dark) 100%);
   color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 11px 22px;
   border-radius: 999px;
-  box-shadow: 0 8px 20px -4px rgba(29, 78, 216, 0.35);
+  box-shadow: 0 8px 20px -4px rgba(34, 197, 94, 0.35);
   transition: var(--transition);
 }
 
 .btn-royal-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px -4px rgba(29, 78, 216, 0.45);
+  box-shadow: 0 12px 26px -4px rgba(34, 197, 94, 0.45);
 }
 
 .btn-royal-gold {
@@ -581,7 +586,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(135deg, #c59b27 0%, #dfaf2b 100%);
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-orange-dark) 100%);
   color: #ffffff;
   font-weight: 700;
   font-size: 0.9rem;
@@ -614,14 +619,15 @@ button {
 
 .btn-royal-outline:hover {
   background: var(--bg-gold-tint);
-  border-color: var(--royal-gold);
+  border-color: var(--brand-orange);
+  color: var(--brand-orange-dark);
   transform: translateY(-1px);
 }
 
 /* Bright Royal Hero Section (Oakridge International Style - Split & Airy) */
 .kb-hero-section {
   position: relative;
-  background: radial-gradient(circle at 85% 15%, #eef5ff 0%, #ffffff 48%, #faf8f4 100%);
+  background: radial-gradient(circle at 85% 15%, #f0fdf4 0%, #ffffff 48%, #fafdfb 100%);
   padding: 36px 0 56px;
   border-bottom: 1px solid var(--border-light);
 }
@@ -849,9 +855,9 @@ button {
 }
 
 .kb-wing-tab.active {
-  background: linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
-  border-color: var(--royal-blue-bright);
-  box-shadow: 0 10px 25px -6px rgba(29, 78, 216, 0.16);
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+  border-color: var(--brand-orange);
+  box-shadow: 0 10px 25px -6px rgba(34, 197, 94, 0.2);
 }
 
 .kb-wing-showcase-card {
@@ -920,15 +926,15 @@ button {
 }
 
 .kb-filter-pill.active {
-  background: var(--royal-blue);
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark));
   color: #ffffff;
-  border-color: var(--royal-blue);
-  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.25);
+  border-color: var(--brand-orange);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
 }
 
-/* Light Royal Footer (No Dark Background!) */
+/* Light Royal Footer (Clean Botanical & Crisp White) */
 .kb-footer {
-  background: linear-gradient(180deg, #faf8f4 0%, #f1f5f9 100%);
+  background: linear-gradient(180deg, #fafdfb 0%, #f0fdf4 100%);
   border-top: 2px solid var(--border-gold);
   padding: 64px 0 28px;
   color: var(--text-body);
@@ -1230,7 +1236,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(13, 39, 87, 0.45);
+  background: rgba(9, 56, 36, 0.45);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 95;
@@ -1245,7 +1251,7 @@ button {
   right: 0;
   background: #ffffff;
   border-bottom: 2px solid var(--border-light);
-  box-shadow: 0 20px 40px rgba(13, 39, 87, 0.18);
+  box-shadow: 0 20px 40px rgba(9, 56, 36, 0.14);
   padding: 16px 20px 24px;
   display: flex;
   flex-direction: column;
@@ -1266,7 +1272,7 @@ button {
 }
 
 .kb-drawer-badge {
-  background: rgba(13, 39, 87, 0.08);
+  background: rgba(34, 197, 94, 0.12);
   color: var(--royal-blue);
   font-size: 0.74rem;
   font-weight: 800;
@@ -1292,7 +1298,7 @@ button {
 
 .kb-drawer-close-btn:hover {
   background: #e2e8f0;
-  color: #0e2b5c;
+  color: var(--royal-blue);
 }
 
 .kb-mobile-drawer-links {
@@ -1306,7 +1312,7 @@ button {
   border-radius: 10px;
   font-size: 0.92rem;
   font-weight: 700;
-  color: #0e2b5c;
+  color: var(--royal-blue);
   background: #f8fafc;
   text-decoration: none;
   display: flex;
@@ -1322,8 +1328,8 @@ button {
 .kb-mobile-drawer-link:hover,
 .kb-mobile-drawer-link:active {
   background: var(--royal-blue-light);
-  color: var(--brand-orange);
-  border-color: rgba(242, 92, 5, 0.3);
+  color: var(--brand-orange-dark);
+  border-color: rgba(34, 197, 94, 0.35);
 }
 
 .kb-drawer-btn {
@@ -1343,20 +1349,20 @@ button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--brand-orange);
+  background: linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark));
   color: #ffffff !important;
   font-weight: 800;
   font-size: 0.95rem;
   padding: 12px 18px;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(242, 92, 5, 0.3);
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .kb-mobile-cta-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(242, 92, 5, 0.4);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.45);
 }
 
 .kb-mobile-call-btn {
@@ -1365,7 +1371,7 @@ button {
   justify-content: center;
   gap: 8px;
   background: #f8fafc;
-  color: #0e2b5c;
+  color: var(--royal-blue);
   font-weight: 700;
   font-size: 0.88rem;
   padding: 10px 14px;
@@ -1389,7 +1395,7 @@ button {
 }
 
 .kb-mobile-admin-btn:hover {
-  color: #0e2b5c;
+  color: var(--royal-blue);
 }
 
 /* Notice Board Grid Responsive Container */

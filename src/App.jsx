@@ -471,14 +471,14 @@ export default function App() {
                 Affiliated to HPBSE Dharamshala, <strong>{settings.schoolName} {settings.subName}</strong> provides a continuous learning journey from joyful early childhood to Senior Secondary board excellence.
               </p>
 
-              {/* 3 Visual Pillars (Consistent Navy Theme & Natural Wording) */}
+              {/* 3 Visual Pillars (Consistent Theme & Natural Wording) */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}>
-                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)', boxShadow: '0 2px 8px rgba(13,39,87,0.03)' }}>
-                  <div style={{ width: 42, height: 42, borderRadius: '10px', background: 'var(--royal-blue-light)', color: 'var(--royal-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-xs)' }}>
+                  <div style={{ width: 42, height: 42, borderRadius: '10px', background: 'var(--royal-blue-light)', color: 'var(--brand-orange-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <BookOpen size={20} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: '1rem', color: '#0e2b5c', fontWeight: 800, marginBottom: '3px' }}>
+                    <h4 style={{ fontSize: '1rem', color: 'var(--text-heading)', fontWeight: 800, marginBottom: '3px' }}>
                       HPBSE Board Preparation & Strong Academics
                     </h4>
                     <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
@@ -487,12 +487,12 @@ export default function App() {
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)', boxShadow: '0 2px 8px rgba(13,39,87,0.03)' }}>
-                  <div style={{ width: 42, height: 42, borderRadius: '10px', background: 'var(--royal-blue-light)', color: 'var(--royal-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-xs)' }}>
+                  <div style={{ width: 42, height: 42, borderRadius: '10px', background: 'var(--royal-blue-light)', color: 'var(--brand-orange-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <MonitorPlay size={20} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: '1rem', color: '#0e2b5c', fontWeight: 800, marginBottom: '3px' }}>
+                    <h4 style={{ fontSize: '1rem', color: 'var(--text-heading)', fontWeight: 800, marginBottom: '3px' }}>
                       Smart Classrooms & Practical Science Labs
                     </h4>
                     <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
@@ -501,12 +501,12 @@ export default function App() {
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)', boxShadow: '0 2px 8px rgba(13,39,87,0.03)' }}>
-                  <div style={{ width: 42, height: 42, borderRadius: '10px', background: 'var(--royal-blue-light)', color: 'var(--royal-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', background: '#ffffff', padding: '16px', borderRadius: '12px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-xs)' }}>
+                  <div style={{ width: 42, height: 42, borderRadius: '10px', background: 'var(--royal-blue-light)', color: 'var(--brand-orange-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <ShieldCheck size={20} />
                   </div>
                   <div>
-                    <h4 style={{ fontSize: '1rem', color: '#0e2b5c', fontWeight: 800, marginBottom: '3px' }}>
+                    <h4 style={{ fontSize: '1rem', color: 'var(--text-heading)', fontWeight: 800, marginBottom: '3px' }}>
                       Safe Campus & School Bus Transport
                     </h4>
                     <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
@@ -593,15 +593,15 @@ export default function App() {
               <div style={{ display: 'inline-block', background: 'var(--brand-orange-light)', color: 'var(--brand-orange)', padding: '3px 10px', borderRadius: '6px', fontSize: '0.74rem', fontWeight: 900, marginBottom: '10px' }}>
                 EARLY YEARS
               </div>
-              <h3 style={{ fontSize: '1.25rem', color: '#0e2b5c', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--text-heading)', marginBottom: '8px' }}>
                 Nursery, LKG & UKG
               </h3>
               <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginBottom: '16px', lineHeight: 1.6 }}>
                 Activity-based learning in safe and cheerful classrooms focusing on Hindi & English phonics, numbers, good manners, and joyful outdoor play.
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.84rem', color: 'var(--text-body)' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="#16a34a" /> Child-friendly caring environment</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="#16a34a" /> Zero stress & joyful activities</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="var(--brand-orange)" /> Child-friendly caring environment</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="var(--brand-orange)" /> Zero stress & joyful activities</li>
               </ul>
             </div>
 
@@ -610,15 +610,15 @@ export default function App() {
               <div style={{ display: 'inline-block', background: 'var(--royal-blue-light)', color: 'var(--royal-blue)', padding: '3px 10px', borderRadius: '6px', fontSize: '0.74rem', fontWeight: 900, marginBottom: '10px' }}>
                 PRIMARY & MIDDLE
               </div>
-              <h3 style={{ fontSize: '1.25rem', color: '#0e2b5c', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--text-heading)', marginBottom: '8px' }}>
                 Class 1st to 10th (Matric)
               </h3>
               <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginBottom: '16px', lineHeight: 1.6 }}>
                 Strong fundamental basics in Mathematics, Science, English, Hindi and Computer basics aligned with the HPBSE Dharamshala board curriculum.
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.84rem', color: 'var(--text-body)' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="#16a34a" /> Regular doubt-clearing sessions</li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="#16a34a" /> 10th Board exam intensive test series</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="var(--brand-orange)" /> Regular doubt-clearing sessions</li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={15} color="var(--brand-orange)" /> 10th Board exam intensive test series</li>
               </ul>
             </div>
 
@@ -627,7 +627,7 @@ export default function App() {
               <div style={{ display: 'inline-block', background: 'var(--brand-orange)', color: '#ffffff', padding: '3px 10px', borderRadius: '6px', fontSize: '0.74rem', fontWeight: 900, marginBottom: '10px' }}>
                 SENIOR SECONDARY
               </div>
-              <h3 style={{ fontSize: '1.25rem', color: '#0e2b5c', marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '1.25rem', color: 'var(--text-heading)', marginBottom: '8px' }}>
                 Class 11th & 12th Streams
               </h3>
               <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginBottom: '16px', lineHeight: 1.6 }}>
@@ -687,7 +687,7 @@ export default function App() {
                       position: 'absolute',
                       bottom: -2,
                       right: -2,
-                      background: 'linear-gradient(135deg, #f25c05, #f59e0b)',
+                      background: 'linear-gradient(135deg, var(--brand-orange), var(--brand-orange-dark))',
                       color: '#ffffff',
                       width: 30,
                       height: 30,
@@ -788,8 +788,8 @@ export default function App() {
                             fontWeight: 800,
                             padding: '2px 8px',
                             borderRadius: '999px',
-                            background: '#ffedd5',
-                            color: '#c2410c'
+                            background: '#dcfce7',
+                            color: '#15803d'
                           }}
                         >
                           LATEST
@@ -808,7 +808,7 @@ export default function App() {
             <div
               className="kb-royal-card"
               style={{
-                background: 'linear-gradient(180deg, #fff7ed 0%, #ffffff 100%)',
+                background: 'linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%)',
                 border: '2px solid var(--brand-orange-border)',
                 padding: '30px'
               }}

@@ -17,8 +17,8 @@ export default function SchoolCrestLogo({ logoUrl, schoolName, size = 88, classN
         background: '#ffffff',
         padding: '4px 6px',
         borderRadius: '14px',
-        border: '2px solid rgba(242, 92, 5, 0.45)', // Vivid Brand Orange & Gold Border
-        boxShadow: '0 4px 16px -2px rgba(13, 39, 87, 0.12)',
+        border: '2px solid rgba(34, 197, 94, 0.35)', // Refined Soft Spring Green Border
+        boxShadow: '0 4px 16px -2px rgba(9, 56, 36, 0.08)',
         transition: 'all 0.3s ease'
       }}
     >
