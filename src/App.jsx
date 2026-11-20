@@ -281,22 +281,17 @@ export default function App() {
 
           {/* Desktop Direct Nav Links (Screens > 1080px) */}
           <nav className="kb-desktop-nav">
-            <a href="#about" className="kb-simple-nav-link">About Us</a>
-            <a href="#classes" className="kb-simple-nav-link">Classes & Streams</a>
+            <a href="#about" className="kb-simple-nav-link">About</a>
+            <a href="#classes" className="kb-simple-nav-link">Academics</a>
             <a href="#faculty" className="kb-simple-nav-link">Faculty</a>
             <a href="#toppers" className="kb-simple-nav-link">Toppers</a>
-            <a href="#notices" className="kb-simple-nav-link">Circulars</a>
+            <a href="#notices" className="kb-simple-nav-link">Notices</a>
             <a href="#gallery" className="kb-simple-nav-link">Gallery</a>
           </nav>
 
-          {/* Right Actions: Phone Call + Admissions Pill + Mobile/Tablet Hamburger */}
+          {/* Right Actions: Admissions Pill (Desktop) + Hamburger (Mobile/Tablet) */}
           <div className="kb-header-right-actions">
-            <a href={`tel:${settings.phonePrimary}`} className="kb-header-phone-box" title="Call School Office">
-              <Phone size={14} color="var(--brand-orange)" />
-              <span className="kb-phone-text">{settings.phonePrimary}</span>
-            </a>
-
-            {/* Modern Animated Bell Capsule (Desktop only to keep mobile header clean) */}
+            {/* Modern Animated Bell Capsule (Desktop Admissions CTA) */}
             <a href="#admission" className="kb-admission-capsule" title="Admissions Open">
               <div className="kb-capsule-bell-wrap">
                 <Bell size={15} className="kb-swinging-bell" />
@@ -344,11 +339,11 @@ export default function App() {
 
             <div className="kb-mobile-drawer-links">
               <a href="#about" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-                <span>About Us</span>
+                <span>About</span>
                 <ChevronRight size={16} />
               </a>
               <a href="#classes" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-                <span>Classes & Streams (Nursery–12th)</span>
+                <span>Academics (Nursery–12th)</span>
                 <ChevronRight size={16} />
               </a>
               <a href="#faculty" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
@@ -360,7 +355,7 @@ export default function App() {
                 <ChevronRight size={16} />
               </a>
               <a href="#notices" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
-                <span>Circulars & Updates</span>
+                <span>Notices & Circulars</span>
                 <ChevronRight size={16} />
               </a>
               <a href="#gallery" className="kb-mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>
@@ -581,7 +576,7 @@ export default function App() {
             <div className="kb-eyebrow">
               <Layers size={14} /> Nursery to Class 12th
             </div>
-            <h2 className="kb-section-title">Classes & Streams Offered</h2>
+            <h2 className="kb-section-title">Academic Wings & Streams Offered</h2>
             <p className="kb-section-desc">
               Providing solid conceptual foundations from early childhood to Senior Secondary board exams.
             </p>
@@ -1242,10 +1237,10 @@ export default function App() {
               </h4>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem' }}>
                 <li><a href="#about" className="kb-ribbon-link">About Us & Principal</a></li>
-                <li><a href="#classes" className="kb-ribbon-link">Classes & Streams (Nursery–12th)</a></li>
+                <li><a href="#classes" className="kb-ribbon-link">Academics (Nursery–12th)</a></li>
                 <li><a href="#faculty" className="kb-ribbon-link">Faculty & Mentors</a></li>
                 <li><a href="#toppers" className="kb-ribbon-link">HPBSE Board Toppers</a></li>
-                <li><a href="#notices" className="kb-ribbon-link">Circulars & Announcements</a></li>
+                <li><a href="#notices" className="kb-ribbon-link">Notices & Announcements</a></li>
                 <li><a href="#gallery" className="kb-ribbon-link">Campus Photo Gallery</a></li>
                 <li>
                   <button
@@ -1304,19 +1299,30 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp Quick Action Button */}
-      <a
-        href={`https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(
-          `Hello! I would like to enquire about admission at Kid Buds Public Senior Secondary School, Bijhari.`
-        )}`}
-        target="_blank"
-        rel="noreferrer"
-        className="kb-floating-whatsapp"
-        title="Chat on WhatsApp"
-      >
-        <MessageSquare size={18} />
-        <span>Admission WhatsApp</span>
-      </a>
+      {/* Floating Quick Action Cluster (Direct Call & Admission WhatsApp) */}
+      <div className="kb-floating-actions-cluster">
+        <a
+          href={`tel:${settings.phonePrimary}`}
+          className="kb-floating-call"
+          title={`Call School Office: ${settings.phonePrimary}`}
+        >
+          <Phone size={15} color="var(--brand-orange-dark)" />
+          <span>Call Office</span>
+        </a>
+
+        <a
+          href={`https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(
+            `Hello! I would like to enquire about admission at Kid Buds Public Senior Secondary School, Bijhari.`
+          )}`}
+          target="_blank"
+          rel="noreferrer"
+          className="kb-floating-whatsapp"
+          title="Chat on WhatsApp"
+        >
+          <MessageSquare size={16} />
+          <span>WhatsApp</span>
+        </a>
+      </div>
 
       {/* Admin Dashboard Modal */}
       <AdminDashboardModal
